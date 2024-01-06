@@ -1,0 +1,20 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // กำหนดให้ใช้โปรแกรม Prettier สำหรับการจัดรูปแบบโค้ดโดยอัตโนมัติ
+  "editor.formatOnSave": true, // เปิดใช้งานการจัดรูปแบบโค้ดอัตโนมัติเมื่อมีการบันทึกไฟล์
+  "editor.codeActionsOnSave": {
+    // กำหนดการดำเนินการเพิ่มเติมที่จะเกิดขึ้นเมื่อมีการบันทึกไฟล์
+    "source.fixAll.eslint": "explicit", // ให้ ESLint ตรวจสอบและแก้ไขข้อผิดพลาดอัตโนมัติ
+    "source.addMissingImports": "explicit" // เพิ่มการนำเข้าโค้ดที่จำเป็นโดยอัตโนมัติเมื่อตรวจพบ
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode" // กำหนดให้ใช้ Prettier เป็นตัวจัดรูปแบบโค้ดสำหรับไฟล์ TypeScript React โดยเฉพาะ
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode" // กำหนดให้ใช้ Prettier เป็นตัวจัดรูปแบบโค้ดสำหรับไฟล์ TypeScript โดยเฉพาะ
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode" // กำหนดให้ใช้ Prettier เป็นตัวจัดรูปแบบโค้ดสำหรับไฟล์ JavaScript โดยเฉพาะ
+  },
+  "typescript.tsdk": "node_modules/typescript/lib", // ระบุตำแหน่งของไลบรารี TypeScript ที่ใช้สำหรับการตรวจสอบโค้ด
+  "svg.preview.background": "transparent" // ตั้งค่าพื้นหลังของภาพ SVG เป็นโปร่งใสเมื่อแสดงตัวอย่าง
+}
