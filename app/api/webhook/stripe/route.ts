@@ -1,5 +1,7 @@
-import stripe from "stripe";
 import { NextResponse } from "next/server";
+
+import stripe from "stripe";
+
 import { createOrder } from "@/lib/actions/order.actions";
 
 export async function POST(request: Request) {

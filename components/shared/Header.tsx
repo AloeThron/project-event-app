@@ -1,9 +1,11 @@
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
+
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { Button } from "../ui/button";
-import NavItems from "./NavItems";
-import MobileNav from "./MobileNav";
+
+import NavItems from "../navbar/NavItems";
+import MobileNav from "../navbar/MobileNav";
 
 const Header = () => {
   return (

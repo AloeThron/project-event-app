@@ -1,7 +1,8 @@
-import { IEvent } from "@/lib/database/models/event.model";
 import React from "react";
 import Card from "./Card";
+
 import Pagination from "./Pagination";
+import { IEvent } from "@/lib/database/models/event.model";
 
 type CollectionProps = {
   data: IEvent[];

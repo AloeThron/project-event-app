@@ -1,9 +1,10 @@
 "use client";
 
-import { headerLinks } from "@/constants";
+import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+
+import { headerLinks } from "@/constants";
 
 const NavItems = () => {
   const pathname = usePathname();

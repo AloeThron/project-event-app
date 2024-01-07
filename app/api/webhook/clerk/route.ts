@@ -1,9 +1,11 @@
-import { Webhook } from "svix";
-import { headers } from "next/headers";
-import { WebhookEvent } from "@clerk/nextjs/server";
-import { createUser, deleteUser, updateUser } from "@/lib/actions/user.actions";
 import { clerkClient } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
+import { headers } from "next/headers";
+
+import { Webhook } from "svix";
+import { WebhookEvent } from "@clerk/nextjs/server";
+
+import { createUser, deleteUser, updateUser } from "@/lib/actions/user.actions";
 
 export async function POST(req: Request) {
   // ดึง WEBHOOK_SECRET จาก environment variable ของระบบ (โดยในกรณีที่ไม่พบ WEBHOOK_SECRET จะทำการโยนข้อผิดพลาดออกไป เพื่อแจ้งให้เราทราบว่าต้องตั้งค่า WEBHOOK_SECRET ใน environment variable)

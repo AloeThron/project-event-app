@@ -1,9 +1,9 @@
 "use server";
 
-import { CreateCategoryParams } from "@/types";
 import { handleError } from "../utils";
 import { connectToDatabase } from "../database";
 import Category from "../database/models/category.model";
+import { CreateCategoryParams } from "@/types";
 
 // ใช้สำหรับสร้างหมวดหมู่สินค้าใหม่ โดยรับพารามิเตอร์ categoryName เพื่อนำไปสร้างข้อมูลใหม่ในฐานข้อมูล โดยใช้ Category.create จาก Mongoose เพื่อสร้างข้อมูลใหม่และคืนค่าในรูปแบบ JSON
 export const createCategory = async ({
