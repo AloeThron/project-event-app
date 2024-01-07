@@ -36,7 +36,6 @@ export async function POST(request: Request) {
     };
     const newOrder = await createOrder(order);
     // ส่ง response กลับไปโดยระบุว่าการดำเนินการเสร็จสิ้น (OK) พร้อมกับข้อมูลของ order ที่สร้างใหม่
-    console.log(newOrder);
     return NextResponse.json({ message: "OK", order: newOrder });
   }
 
