@@ -47,6 +47,7 @@ const CategoryFilter = () => {
       });
     }
 
+    // นำทางไปยัง URL ใหม่ และป้องกันการเลื่อนหน้าเว็บไปที่ด้านบน
     router.push(newUrl, { scroll: false });
   };
 
