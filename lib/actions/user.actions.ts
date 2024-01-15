@@ -84,7 +84,7 @@ export async function deleteUser(clerkId: string) {
     // ยกเลิกการเชื่อมโยงข้อมูลที่เกี่ยวข้อง
     // Unlink relationships
     await Promise.all([
-      // อัปเดตคอลเล็กชัน 'events' เพื่อลบการอ้างอิงไปยังผู้ใช้นี้ในเหตุการณ์ที่เกี่ยวข้อง
+      // อัปเดตคอลเล็กชัน 'events' เพื่อลบการอ้างอิงไปยังผู้ใช้นี้ใน event ที่เกี่ยวข้อง
       Event.updateMany(
         { _id: { $in: userToDelete.events } }, // $in ใช้เพื่อตรวจสอบว่าฟิลด์มีค่าที่ระบุหรือไม่
         { $pull: { organizer: userToDelete._id } } // $unset ใช้เพื่อลบฟิลด์ออกจากเอกสาร

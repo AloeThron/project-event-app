@@ -58,12 +58,12 @@ export async function POST(req: Request) {
     });
   }
 
-  // ตรวจสอบว่าเป็นเหตุการณ์ชนิดไหน (เช่น user.created, user.updated, user.deleted) จะดำเนินการตามเหตุการณ์นั้นๆ โดยใช้ฟังก์ชันที่ถูกนำเข้ามาจากไฟล์ user.actions หลังจากนั้นจะทำการส่ง response กลับไปตามผลลัพธ์ของการดำเนินการนั้นๆ ด้วยการใช้ NextResponse.json() เพื่อสร้าง JSON response
+  // ตรวจสอบว่าเป็น event ชนิดไหน (เช่น user.created, user.updated, user.deleted) จะดำเนินการตาม event นั้นๆ โดยใช้ฟังก์ชันที่ถูกนำเข้ามาจากไฟล์ user.actions หลังจากนั้นจะทำการส่ง response กลับไปตามผลลัพธ์ของการดำเนินการนั้นๆ ด้วยการใช้ NextResponse.json() เพื่อสร้าง JSON response
   // Get the ID and type
   const { id } = evt.data;
   const eventType = evt.type;
 
-  // สร้างผู้ใช้ใหม่ (สำหรับเหตุการณ์ user.created)
+  // สร้างผู้ใช้ใหม่ (สำหรับ event  user.created)
   if (eventType === "user.created") {
     const { id, email_addresses, image_url, first_name, last_name, username } =
       evt.data;
@@ -89,7 +89,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "OK", user: newUser });
   }
 
-  // อัปเดตข้อมูลผู้ใช้ (สำหรับเหตุการณ์ user.updated)
+  // อัปเดตข้อมูลผู้ใช้ (สำหรับ event  user.updated)
   if (eventType === "user.updated") {
     const { id, image_url, first_name, last_name, username } = evt.data;
     const user = {
@@ -104,7 +104,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "OK", user: updatedUser });
   }
 
-  // ลบผู้ใช้ (สำหรับเหตุการณ์ user.deleted)
+  // ลบผู้ใช้ (สำหรับ event  user.deleted)
   if (eventType === "user.deleted") {
     const { id } = evt.data;
     // เรียกใช้ฟังก์ชัน "deleteUser" เพื่อลบข้อมูลผู้ใช้ โดยใช้ข้อมูลจากอ็อบเจ็กต์ "id" ที่เตรียมไว้ และเก็บผลลัพธ์ไว้ที่ตัวแปร "deletedUser"
@@ -113,6 +113,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "OK", user: deletedUser });
   }
 
-  // ส่งข้อมูลกลับไปตามการดำเนินการที่เกิดขึ้นกับผู้ใช้งานในระบบของเรา หรือจะส่ง response ว่างๆ กลับไปด้วย status code 200 หากไม่มีการเกิดเหตุการณ์ที่ต้องการจัดการในที่นี้
+  // ส่งข้อมูลกลับไปตามการดำเนินการที่เกิดขึ้นกับผู้ใช้งานในระบบของเรา หรือจะส่ง response ว่างๆ กลับไปด้วย status code 200 หากไม่มีการเกิด event ที่ต้องการจัดการในที่นี้
   return new Response("", { status: 200 });
 }
