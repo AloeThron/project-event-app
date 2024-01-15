@@ -17,10 +17,8 @@ import { Input } from "@/components/ui/input";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { eventFormSchema } from "@/lib/validator";
@@ -39,7 +37,12 @@ type EventFormProps = {
   eventId?: string;
 };
 
-const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
+export default function EventForm({
+  userId,
+  type,
+  event,
+  eventId,
+}: EventFormProps) {
   const [files, setFiles] = useState<File[]>([]);
   const initialValues =
     event && type === "Update"
@@ -370,6 +373,4 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
       </form>
     </Form>
   );
-};
-
-export default EventForm;
+}

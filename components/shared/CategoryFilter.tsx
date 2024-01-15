@@ -10,13 +10,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
 import { getAllCategories } from "@/lib/actions/category.actions";
 import { ICategory } from "@/lib/database/models/category.model";
 import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
 
-
-const CategoryFilter = () => {
+export default function CategoryFilter() {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -73,6 +71,4 @@ const CategoryFilter = () => {
       </SelectContent>
     </Select>
   );
-};
-
-export default CategoryFilter;
+}

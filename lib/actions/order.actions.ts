@@ -18,7 +18,7 @@ import {
 } from "@/types";
 
 // ฟังก์ชันสำหรับทำการ Checkout โดยรับพารามิเตอร์ order ที่เป็น object ที่มีข้อมูลที่เกี่ยวข้องกับการสั่งซื้อ
-export const checkoutOrder = async (order: CheckoutOrderParams) => {
+export async function checkoutOrder(order: CheckoutOrderParams) {
   // สร้างอ็อบเจ็กต์ Stripe โดยใช้คีย์ลับลับที่เก็บไว้ใน .env
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -53,9 +53,9 @@ export const checkoutOrder = async (order: CheckoutOrderParams) => {
   } catch (error) {
     throw error;
   }
-};
+}
 
-export const createOrder = async (order: CreateOrderParams) => {
+export async function createOrder(order: CreateOrderParams) {
   try {
     // เชื่อมต่อกับฐานข้อมูล
     await connectToDatabase();
@@ -72,7 +72,7 @@ export const createOrder = async (order: CreateOrderParams) => {
   } catch (error) {
     handleError(error);
   }
-};
+}
 
 // GET ORDERS BY EVENT
 export async function getOrdersByEvent({
@@ -180,7 +180,7 @@ export async function getOrdersByUser({
         },
       });
 
-      // นับจำนวนรายการทั้งหมดของการสั่งซื้อ
+    // นับจำนวนรายการทั้งหมดของการสั่งซื้อ
     const ordersCount = await Order.distinct("event._id").countDocuments(
       conditions
     );

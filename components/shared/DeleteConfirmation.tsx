@@ -15,10 +15,9 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-
 import { deleteEvent } from "@/lib/actions/event.actions";
 
-export const DeleteConfirmation = ({ eventId }: { eventId: string }) => {
+export function DeleteConfirmation({ eventId }: { eventId: string }) {
   const pathname = usePathname();
   let [isPending, startTransition] = useTransition();
 
@@ -57,4 +56,4 @@ export const DeleteConfirmation = ({ eventId }: { eventId: string }) => {
       </AlertDialogContent>
     </AlertDialog>
   );
-};
+}

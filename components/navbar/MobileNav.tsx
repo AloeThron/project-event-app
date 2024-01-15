@@ -12,7 +12,7 @@ import { Separator } from "../ui/separator";
 
 import NavItems from "./NavItems";
 
-const MobileNav = () => {
+export default function MobileNav() {
   return (
     <nav className="md:hidden">
       <Sheet>
@@ -38,6 +38,4 @@ const MobileNav = () => {
       </Sheet>
     </nav>
   );
-};
-
-export default MobileNav;
+}

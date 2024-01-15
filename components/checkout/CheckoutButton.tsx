@@ -3,13 +3,13 @@
 import Link from "next/link";
 import React from "react";
 
-import { Button } from "../ui/button";
 import { SignedIn, SignedOut, useUser } from "@clerk/nextjs";
 
+import { Button } from "../ui/button";
 import Checkout from "./Checkout";
 import { IEvent } from "@/lib/database/models/event.model";
 
-const CheckoutButton = ({ event }: { event: IEvent }) => {
+export default function CheckoutButton({ event }: { event: IEvent }) {
   const { user } = useUser();
   const userId = user?.publicMetadata.userId as string;
   const hasEventFinished = new Date(event.endDateTime) < new Date();
@@ -35,6 +35,4 @@ const CheckoutButton = ({ event }: { event: IEvent }) => {
       )}
     </div>
   );
-};
-
-export default CheckoutButton;
+}

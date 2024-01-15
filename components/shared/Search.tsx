@@ -8,11 +8,11 @@ import { Input } from "../ui/input";
 
 import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
 
-const Search = ({
-  placeholder = "Search title...",
-}: {
+type props = {
   placeholder?: string;
-}) => {
+};
+
+export default function Search({ placeholder = "Search title..." }: props) {
   const [query, setQuery] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -56,6 +56,4 @@ const Search = ({
       />
     </div>
   );
-};
-
-export default Search;
+}

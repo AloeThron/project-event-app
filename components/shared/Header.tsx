@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 import NavItems from "../navbar/NavItems";
 import MobileNav from "../navbar/MobileNav";
 
-const Header = () => {
+export default function Header() {
   return (
     <header className="w-full border-b">
       <div className="wrapper flex items-center justify-between">
@@ -40,6 +40,5 @@ const Header = () => {
       </div>
     </header>
   );
-};
+}
 
-export default Header;

@@ -14,7 +14,7 @@ type CardProps = {
   hidePrice?: boolean;
 };
 
-const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
+export default function Card({ event, hasOrderLink, hidePrice }: CardProps) {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
 
@@ -86,6 +86,4 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
       </div>
     </div>
   );
-};
-
-export default Card;
+}

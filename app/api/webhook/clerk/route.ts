@@ -9,7 +9,6 @@ import { createUser, deleteUser, updateUser } from "@/lib/actions/user.actions";
 
 export async function POST(req: Request) {
   // ดึง WEBHOOK_SECRET จาก environment variable ของระบบ (โดยในกรณีที่ไม่พบ WEBHOOK_SECRET จะทำการโยนข้อผิดพลาดออกไป เพื่อแจ้งให้เราทราบว่าต้องตั้งค่า WEBHOOK_SECRET ใน environment variable)
-  // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
   if (!WEBHOOK_SECRET) {
     throw new Error(
@@ -18,14 +17,12 @@ export async function POST(req: Request) {
   }
 
   // รับ HTTP POST request ที่ส่งมา โดยตรวจสอบหา Headers ที่เกี่ยวข้องกับ Svix Webhook (เช่น svix-id, svix-timestamp, svix-signature)
-  // Get the headers
   const headerPayload = headers();
   const svix_id = headerPayload.get("svix-id");
   const svix_timestamp = headerPayload.get("svix-timestamp");
   const svix_signature = headerPayload.get("svix-signature");
 
   // ถ้าหากไม่พบ Headers เหล่านี้ จะทำการส่ง response กลับไปว่าเกิดข้อผิดพลาดพร้อมกับสถานะ 400 Bad Request
-  // If there are no headers, error out
   if (!svix_id || !svix_timestamp || !svix_signature) {
     return new Response("Error occured -- no svix headers", {
       status: 400,
@@ -36,14 +33,13 @@ export async function POST(req: Request) {
   const payload = await req.json();
   const body = JSON.stringify(payload);
 
-  // Create a new Svix instance with your secret.
+  // สร้างอินสแตนซ์ Svix ใหม่
   const wh = new Webhook(WEBHOOK_SECRET);
 
   // ประกาศตัวแปร evt ซึ่งมีชนิดเป็น WebhookEvent เพื่อเก็บข้อมูลจาก Webhook
   let evt: WebhookEvent;
 
   // ตรวจสอบความถูกต้องของ payload ด้วย headers ที่ถูกส่งมา
-  // Verify the payload with the headers
   try {
     evt = wh.verify(body, {
       "svix-id": svix_id,
@@ -59,11 +55,10 @@ export async function POST(req: Request) {
   }
 
   // ตรวจสอบว่าเป็น event ชนิดไหน (เช่น user.created, user.updated, user.deleted) จะดำเนินการตาม event นั้นๆ โดยใช้ฟังก์ชันที่ถูกนำเข้ามาจากไฟล์ user.actions หลังจากนั้นจะทำการส่ง response กลับไปตามผลลัพธ์ของการดำเนินการนั้นๆ ด้วยการใช้ NextResponse.json() เพื่อสร้าง JSON response
-  // Get the ID and type
   const { id } = evt.data;
   const eventType = evt.type;
 
-  // สร้างผู้ใช้ใหม่ (สำหรับ event  user.created)
+  // สร้างผู้ใช้ใหม่ (สำหรับ event user.created)
   if (eventType === "user.created") {
     const { id, email_addresses, image_url, first_name, last_name, username } =
       evt.data;

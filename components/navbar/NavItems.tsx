@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 import { headerLinks } from "@/constants";
 
-const NavItems = () => {
+export default function NavItems() {
   const pathname = usePathname();
 
   return (
@@ -27,6 +27,4 @@ const NavItems = () => {
       })}
     </ul>
   );
-};
-
-export default NavItems;
+}

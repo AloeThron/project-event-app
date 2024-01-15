@@ -13,11 +13,15 @@ type PaginationProps = {
   urlParamName?: string;
 };
 
-const Pagination = ({ page, totalPages, urlParamName }: PaginationProps) => {
+export default function Pagination({
+  page,
+  totalPages,
+  urlParamName,
+}: PaginationProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const onClick = (btnType: string) => {
+  function onClick(btnType: string) {
     const pageValue = btnType === "next" ? Number(page) + 1 : Number(page) - 1;
 
     const newUrl = formUrlQuery({
@@ -27,7 +31,7 @@ const Pagination = ({ page, totalPages, urlParamName }: PaginationProps) => {
     });
 
     router.push(newUrl, { scroll: false });
-  };
+  }
 
   return (
     <div className="flex gap-2">
@@ -51,6 +55,4 @@ const Pagination = ({ page, totalPages, urlParamName }: PaginationProps) => {
       </Button>
     </div>
   );
-};
-
-export default Pagination;
+}

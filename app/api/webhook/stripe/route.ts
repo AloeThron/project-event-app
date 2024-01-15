@@ -24,7 +24,7 @@ export async function POST(request: Request) {
   // Get the ID and type
   const eventType = event.type;
 
-  // หากเป็น event  'checkout.session.completed' จะดึงข้อมูลเพิ่มเติมเกี่ยวกับการชำระเงินออกมา เช่น id ของการชำระเงิน (stripeId), จำนวนเงินทั้งหมด (amount_total), และ metadata เพิ่มเติม
+  // หากเป็น event 'checkout.session.completed' จะดึงข้อมูลเพิ่มเติมเกี่ยวกับการชำระเงินออกมา เช่น id ของการชำระเงิน (stripeId), จำนวนเงินทั้งหมด (amount_total), และ metadata เพิ่มเติม
   // CREATE
   if (eventType === "checkout.session.completed") {
     const { id, amount_total, metadata } = event.data.object;
@@ -41,6 +41,6 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "OK", order: newOrder });
   }
 
-  // หากไม่ใช่ event  'checkout.session.completed' จะส่ง response ว่างกลับไปด้วยสถานะ 200 ที่บอกว่าการทำงานเสร็จสิ้น โดยไม่มีข้อมูลเพิ่มเติมใน response
+  // หากไม่ใช่ event 'checkout.session.completed' จะส่ง response ว่างกลับไปด้วยสถานะ 200 ที่บอกว่าการทำงานเสร็จสิ้น โดยไม่มีข้อมูลเพิ่มเติมใน response
   return new Response("", { status: 200 });
 }
